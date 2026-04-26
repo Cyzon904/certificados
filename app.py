@@ -9,9 +9,9 @@ def gerar_certificado_pdf(nome):
     pdf = FPDF(orientation="L", unit="mm", format="A4")
     pdf.add_page()
     
-    # Borda decorativa azul
+    # Borda decorativa - Alterada para o VERDE Produttivo (34, 197, 94)
     pdf.set_line_width(5)
-    pdf.set_draw_color(37, 99, 235) 
+    pdf.set_draw_color(34, 197, 94) 
     pdf.rect(10, 10, 277, 190)
     
     # Título
@@ -20,7 +20,7 @@ def gerar_certificado_pdf(nome):
     pdf.ln(30)
     pdf.cell(0, 20, "CERTIFICADO", ln=True, align="C")
     
-    # Subtítulo baseado na trilha [cite: 1]
+    # Subtítulo baseado na trilha
     pdf.set_font("Arial", "", 20)
     pdf.set_text_color(100, 116, 139)
     pdf.cell(0, 15, "MESTRE DA AUTOMAÇÃO", ln=True, align="C")
@@ -29,21 +29,22 @@ def gerar_certificado_pdf(nome):
     pdf.set_font("Arial", "I", 15)
     pdf.cell(0, 10, "Concedido a:", ln=True, align="C")
     
-    # Nome do Aluno
+    # Nome do Aluno - Alterado para o VERDE Produttivo (34, 197, 94)
     pdf.set_font("Arial", "B", 35)
-    pdf.set_text_color(37, 99, 235)
+    pdf.set_text_color(34, 197, 94)
     pdf.cell(0, 30, nome.upper(), ln=True, align="C")
     
-    # Descrição das competências [cite: 14, 26, 22]
+    # Descrição das competências
     pdf.ln(5)
     pdf.set_font("Arial", "", 12)
     pdf.set_text_color(71, 85, 105)
     texto = (
-        "Pela excelência na trilha de automação, demonstrando domínio em conectividade via APIs e Webhooks , estruturação de dados em JSON e criação de fluxos inteligentes entre Intercom e Zapier."
+        "Pela excelência na trilha de automação, demonstrando domínio em conectividade via APIs e Webhooks, "
+        "estruturação de dados em JSON e criação de fluxos inteligentes entre Intercom e Zapier."
     )
     pdf.multi_cell(0, 10, texto, align="C")
     
-    # Regra de Ouro [cite: 31]
+    # Regra de Ouro
     pdf.ln(20)
     pdf.set_font("Arial", "B", 11)
     pdf.cell(0, 10, '"Se você fez algo manual mais de 3 vezes, pode automatizar."', ln=True, align="C")
