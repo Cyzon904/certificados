@@ -39,8 +39,7 @@ def gerar_certificado_pdf(nome):
     pdf.set_font("Arial", "", 12)
     pdf.set_text_color(71, 85, 105)
     texto = (
-        "Pela conclusão da trilha de conhecimento em tecnologia e automação de processos, "
-        "demonstrando domínio no Intercom (Porteiro), Zapier (Mestre de Obras), Jira e Python."
+        "Pela excelência na trilha de automação, demonstrando domínio em conectividade via APIs e Webhooks , estruturação de dados em JSON e criação de fluxos inteligentes entre Intercom e Zapier."
     )
     pdf.multi_cell(0, 10, texto, align="C")
     
