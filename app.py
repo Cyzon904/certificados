@@ -12,7 +12,7 @@ def gerar_certificado_pdf(nome):
     try:
         pdf.add_font('Comfortaa', '', 'Comfortaa-Regular.ttf')
         pdf.add_font('Comfortaa', 'B', 'Comfortaa-Bold.ttf')
-        fonte_principal = 'Montserrat'
+        fonte_principal = 'Comfortaa'
     except:
         # Caso o ficheiro não seja encontrado, ele volta para Arial para não quebrar
         fonte_principal = 'Arial'
