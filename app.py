@@ -9,7 +9,6 @@ def gerar_certificado_pdf(nome):
     pdf = FPDF(orientation="L", unit="mm", format="A4")
     pdf.add_page()
     
-    # Borda decorativa - Alterada para o VERDE Produttivo (34, 197, 94)
     pdf.set_line_width(5)
     pdf.set_draw_color(34, 197, 94) 
     pdf.rect(10, 10, 277, 190)
@@ -29,7 +28,7 @@ def gerar_certificado_pdf(nome):
     pdf.set_font("Arial", "I", 15)
     pdf.cell(0, 10, "Concedido a:", ln=True, align="C")
     
-    # Nome do Aluno - Alterado para o VERDE Produttivo (34, 197, 94)
+    # Nome do Aluno
     pdf.set_font("Arial", "B", 35)
     pdf.set_text_color(34, 197, 94)
     pdf.cell(0, 30, nome.upper(), ln=True, align="C")
