@@ -69,6 +69,7 @@ nome_usuario = st.text_input("Nome:")
 
 if st.button("Gerar meu Certificado"):
     if nome_usuario:
+        st.balloons()
         try:
             pdf_output = gerar_certificado_pdf(nome_usuario)
             st.success(f"Certificado pronto para {nome_usuario}!")
