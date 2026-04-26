@@ -63,7 +63,7 @@ def gerar_certificado_pdf(nome):
 
 # Interface do Streamlit
 st.title("🏆 Parabéns pela Conclusão!")
-st.write("Digite seu nome completo para gerar o certificado com a nova fonte:")
+st.write("Você chegou ao final da nossa jornada. Agora, vamos oficializar sua entrega das chaves no mundo da automação.")
 
 nome_usuario = st.text_input("Nome:")
 
