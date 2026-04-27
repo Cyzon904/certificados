@@ -1,20 +1,17 @@
 import streamlit as st
 from fpdf import FPDF
 
-# Configuração da página
+# Configuracao da pagina
 st.set_page_config(page_title="Certificado - Trilha de Automação", layout="centered")
 
 def gerar_certificado_pdf(nome):
     pdf = FPDF(orientation="L", unit="mm", format="A4")
     
-    # 1. Registar as fontes personalizadas
-    # Certifica-te de que os ficheiros .ttf estão na mesma pasta do código
     try:
         pdf.add_font('Comfortaa', '', 'Comfortaa-Regular.ttf')
         pdf.add_font('Comfortaa', 'B', 'Comfortaa-Bold.ttf')
         fonte_principal = 'Comfortaa'
     except:
-        # Caso o ficheiro não seja encontrado, ele volta para Arial para não quebrar
         fonte_principal = 'Arial'
 
     pdf.add_page()
@@ -24,13 +21,13 @@ def gerar_certificado_pdf(nome):
     pdf.set_draw_color(34, 197, 94) 
     pdf.rect(10, 10, 277, 190)
     
-    # Título
+    # Titulo
     pdf.set_font(fonte_principal, 'B', 45)
     pdf.set_text_color(30, 41, 59)
     pdf.ln(30)
     pdf.cell(0, 20, "CERTIFICADO", ln=True, align="C")
     
-    # Subtítulo
+    # Subtitulo
     pdf.set_font(fonte_principal, '', 20)
     pdf.set_text_color(100, 116, 139)
     pdf.cell(0, 15, "MESTRE DA AUTOMAÇÃO", ln=True, align="C")
@@ -44,7 +41,7 @@ def gerar_certificado_pdf(nome):
     pdf.set_text_color(34, 197, 94)
     pdf.cell(0, 30, nome.upper(), ln=True, align="C")
     
-    # Descrição
+    # Descricao
     pdf.ln(5)
     pdf.set_font(fonte_principal, '', 12)
     pdf.set_text_color(71, 85, 105)
@@ -62,17 +59,65 @@ def gerar_certificado_pdf(nome):
     return pdf.output()
 
 # Interface do Streamlit
-st.title("🏆 Parabéns pela Conclusão!")
-st.write("Você chegou ao final da nossa jornada. Agora, vamos oficializar sua entrega das chaves no mundo da automação.")
+st.title("Parabens pela Conclusao!")
+st.write("Voce chegou ao final da nossa jornada. Para liberar seu certificado, resolva o desafio final.")
 
-nome_usuario = st.text_input("Nome:")
+# Secao do Desafio Final com 3 perguntas
+st.markdown("### Teste seus Conhecimentos")
+
+resposta_1 = st.radio(
+    "1. Qual ferramenta funciona como o nosso Mestre de Obras, conectando sistemas que nao se falam naturalmente?",
+    ("Intercom", "Jira", "Zapier", "Pipefy"),
+    index=None
+)
+
+resposta_2 = st.radio(
+    "2. Na nossa analogia do restaurante, o que e uma API?",
+    (
+        "Um banco de dados de senhas.",
+        "O garcom que leva o pedido de um sistema para o outro e traz o prato pronto.",
+        "Um robo de atendimento do WhatsApp.",
+        "Uma tela de configuracao do sistema."
+    ),
+    index=None
+)
+
+resposta_3 = st.radio(
+    "3. O que e um Workflow no Intercom?",
+    (
+        "Um mapa de decisoes logicas que o robo segue para organizar a fila e tomar acoes.",
+        "O historico de mensagens apagadas do cliente.",
+        "A central de ajuda com artigos em texto.",
+        "Uma planilha externa do Google Sheets."
+    ),
+    index=None
+)
+
+st.markdown("---")
+
+nome_usuario = st.text_input("Digite seu nome completo como deseja no certificado:")
 
 if st.button("Gerar meu Certificado"):
-    if nome_usuario:
+    
+    # Respostas corretas definidas aqui para facilitar
+    resp_1_correta = "Zapier"
+    resp_2_correta = "O garcom que leva o pedido de um sistema para o outro e traz o prato pronto."
+    resp_3_correta = "Um mapa de decisoes logicas que o robo segue para organizar a fila e tomar acoes."
+
+    # Validacao 1: Nome preenchido
+    if not nome_usuario:
+        st.warning("Por favor, preencha seu nome primeiro.")
+        
+    # Validacao 2: Respostas corretas
+    elif resposta_1 != resp_1_correta or resposta_2 != resp_2_correta or resposta_3 != resp_3_correta:
+        st.error("Ops! Parece que alguma resposta esta incorreta. Revise o material da trilha e tente novamente, voce consegue!")
+        
+    # Sucesso: Tudo certo
+    else:
         st.balloons()
         try:
             pdf_output = gerar_certificado_pdf(nome_usuario)
-            st.success(f"Certificado pronto para {nome_usuario}!")
+            st.success(f"Excelente trabalho, {nome_usuario}! Seu certificado esta pronto.")
             
             st.download_button(
                 label="Baixar PDF",
@@ -81,6 +126,4 @@ if st.button("Gerar meu Certificado"):
                 mime="application/pdf"
             )
         except Exception as e:
-            st.error("Erro ao gerar. Verifique se os ficheiros da fonte estão na pasta.")
-    else:
-        st.warning("Preencha o nome primeiro.")
+            st.error("Erro ao gerar. Verifique se os ficheiros da fonte estao na pasta.")
