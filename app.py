@@ -59,34 +59,34 @@ def gerar_certificado_pdf(nome):
     return pdf.output()
 
 # Interface do Streamlit
-st.title("Parabens pela Conclusao!")
-st.write("Voce chegou ao final da nossa jornada. Para liberar seu certificado, resolva o desafio final.")
+st.title("Parabéns pela Conclusão!")
+st.write("Você chegou ao final da nossa jornada. Para liberar seu certificado, resolva o desafio final.")
 
 # Secao do Desafio Final com 3 perguntas
 st.markdown("### Teste seus Conhecimentos")
 
 resposta_1 = st.radio(
-    "1. Qual ferramenta funciona como o nosso Mestre de Obras, conectando sistemas que nao se falam naturalmente?",
+    "1. Qual ferramenta funciona como o nosso Mestre de Obras, conectando sistemas que não se falam naturalmente?",
     ("Intercom", "Jira", "Zapier", "Pipefy"),
     index=None
 )
 
 resposta_2 = st.radio(
-    "2. Na nossa analogia do restaurante, o que e uma API?",
+    "2. Na nossa analogia do restaurante, o que é uma API?",
     (
         "Um banco de dados de senhas.",
-        "O garcom que leva o pedido de um sistema para o outro e traz o prato pronto.",
-        "Um robo de atendimento do WhatsApp.",
-        "Uma tela de configuracao do sistema."
+        "O garçom que leva o pedido de um sistema para o outro e traz o prato pronto.",
+        "Um robô de atendimento do WhatsApp.",
+        "Uma tela de configuração do sistema."
     ),
     index=None
 )
 
 resposta_3 = st.radio(
-    "3. O que e um Workflow no Intercom?",
+    "3. O que é um Workflow no Intercom?",
     (
-        "Um mapa de decisoes logicas que o robo segue para organizar a fila e tomar acoes.",
-        "O historico de mensagens apagadas do cliente.",
+        "Um mapa de decisões lógicas que o robô segue para organizar a fila e tomar ações.",
+        "O histórico de mensagens apagadas do cliente.",
         "A central de ajuda com artigos em texto.",
         "Uma planilha externa do Google Sheets."
     ),
@@ -101,8 +101,8 @@ if st.button("Gerar meu Certificado"):
     
     # Respostas corretas definidas aqui para facilitar
     resp_1_correta = "Zapier"
-    resp_2_correta = "O garcom que leva o pedido de um sistema para o outro e traz o prato pronto."
-    resp_3_correta = "Um mapa de decisoes logicas que o robo segue para organizar a fila e tomar acoes."
+    resp_2_correta = "O garçom que leva o pedido de um sistema para o outro e traz o prato pronto."
+    resp_3_correta = "Um mapa de decisões lógicas que o robô segue para organizar a fila e tomar ações."
 
     # Validacao 1: Nome preenchido
     if not nome_usuario:
@@ -110,14 +110,14 @@ if st.button("Gerar meu Certificado"):
         
     # Validacao 2: Respostas corretas
     elif resposta_1 != resp_1_correta or resposta_2 != resp_2_correta or resposta_3 != resp_3_correta:
-        st.error("Ops! Parece que alguma resposta esta incorreta. Revise o material da trilha e tente novamente, voce consegue!")
+        st.error("Ops! Parece que alguma resposta está incorreta. Revise o material da trilha e tente novamente, você consegue!")
         
     # Sucesso: Tudo certo
     else:
         st.balloons()
         try:
             pdf_output = gerar_certificado_pdf(nome_usuario)
-            st.success(f"Excelente trabalho, {nome_usuario}! Seu certificado esta pronto.")
+            st.success(f"Excelente trabalho, {nome_usuario}! Seu certificado está pronto.")
             
             st.download_button(
                 label="Baixar PDF",
